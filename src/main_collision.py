@@ -1,3 +1,4 @@
+#main-forrit sem inniheldur collision, reyna að koma árekstrarhlutanum yfir í sérklasa - ATH! kóði virkar ekki í núverandi mynd
 import sys
 import numpy as np
 import pygame
