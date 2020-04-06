@@ -18,17 +18,16 @@ class einn:
 
 
     def astand(self,st):
-        if self.st == 0:
+        if self.st == 0:  #Heilbriðgur
             self.status = 0
             return
-        if self.st == 1:
+        if self.st == 1:  #Sýktur
             self.status = 1
             return
-        if self.st == 2:
+        if self.st == 2:  #Búinn að jafna sig
             self.status = 2
             return
-        if self.st == 3:
-            self.status = 2
+
 
 
     def teljari(self):
