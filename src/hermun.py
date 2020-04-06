@@ -30,8 +30,8 @@ while True:
         #y[i] += vy[i]
 
     for i in range(n):
-        i = einn(self)
-        i.teikna(self)
+        prufa = einn()
+        prufa.teikna()
 
 
     for event in pygame.event.get():

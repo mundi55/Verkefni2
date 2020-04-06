@@ -18,13 +18,13 @@ class einn:
 
 
     def astand(self,st):
-        if self.st = "s":
+        if self.st == "s":
             self.status = "s"
             return
-        if self.st = "l":
+        if self.st == "l":
             self.status = "l"
             return
-        if self.st = "h"
+        if self.st == "h":
             self.status = "h"
             return
 
