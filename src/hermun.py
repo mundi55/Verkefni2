@@ -1,6 +1,6 @@
 import numpy as np
 import pygame
-import Class einn
+import einn
 
 
 WHITE = (255, 255, 255)
@@ -18,7 +18,7 @@ pygame.display.set_caption('Covid-19 hermir')
 FRAMES_PER_SECOND = 30
 fpsClock = pygame.time.Clock()
 n = 10
-
+i=0
 while True:
    # for i in range(n):
     #    # Reverse directon if point hits the boundary
@@ -30,8 +30,8 @@ while True:
         #y[i] += vy[i]
 
     for i in range(n):
-        i = einn()
-       i.teikna()
+        i = einn(self)
+        i.teikna(self)
 
 
     for event in pygame.event.get():

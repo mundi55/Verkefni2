@@ -3,8 +3,8 @@ import numpy as np
 
 class einn:
 
-    def __init__(self):
-        self.status = h
+    def __init__(self,stat):
+        self.status = stat #h,l,s
         self.svaedi = 0
         self.x = np.random.rand()
         self.y = np.random.rand()
@@ -17,11 +17,17 @@ class einn:
                            (int(600 * self.x), int(400 * self.y), 5, 0))
 
 
-    def sykja(self):
-        self.status = s
+    def astand(self,st):
+        if self.st = "s":
+            self.status = "s"
+            return
+        if self.st = "l":
+            self.status = "l"
+            return
+        if self.st = "h"
+            self.status = "h"
+            return
 
-    def laekna(self):
-        self.status = l
 
     def teljari(self):
         i =+1
