@@ -10,7 +10,7 @@ class einn:
         self.y = np.random.rand()
         self.vx = speed * np.random.rand()
         self.vy = speed * np.random.rand()
-        self.i = 0
+        self.teljari = 0
 
     def teikna(self, pygame, windowSurface):
         pygame.draw.circle(windowSurface, BLUE, \
