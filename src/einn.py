@@ -20,6 +20,9 @@ class einn:
     def sykja(self):
         self.status = s
 
+    def laekna(self):
+        self.status = l
+
     def teljari(self):
         i =+1
 

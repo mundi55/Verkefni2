@@ -1,6 +1,7 @@
 import numpy as np
 import pygame
-import einn
+import Class einn
+
 
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
@@ -27,6 +28,7 @@ while True:
         #    vy[i] = -1 * vy[i]
         #x[i] += vx[i]
         #y[i] += vy[i]
+
     for i in range(n):
         i = einn()
        i.teikna()
