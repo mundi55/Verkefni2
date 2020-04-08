@@ -1,10 +1,9 @@
-import pygame
-import numpy as np
 
-class einn:
+
+class Einn:
 
     def __init__(self,stat):
-        self.status = stat  #h,l,s
+        self.status = stat
         self.svaedi = 0
         self.x = np.random.rand()
         self.y = np.random.rand()
@@ -12,7 +11,7 @@ class einn:
         self.vy = speed * np.random.rand()
         self.teljari = 0
 
-    def teikna(self, pygame, windowSurface):
+    def draw(self, pygame, windowSurface):
         pygame.draw.circle(windowSurface, BLUE, \
                            (int(600 * self.x), int(400 * self.y), 5, 0))
 
@@ -31,5 +30,5 @@ class einn:
 
 
     def teljari(self):
-        i =+1
+        self.teljari
 

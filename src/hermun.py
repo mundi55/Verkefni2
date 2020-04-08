@@ -1,6 +1,6 @@
 import numpy as np
 import pygame
-import einn
+import Einn
 
 
 WHITE = (255, 255, 255)
@@ -17,8 +17,13 @@ pygame.display.set_caption('Covid-19 hermir')
 
 FRAMES_PER_SECOND = 30
 fpsClock = pygame.time.Clock()
+g = Einn
 
-for i =
+
+
+g.draw(pygame, windowSurface)
+
+
 
 while True:
    # for i in range(n):
@@ -30,7 +35,7 @@ while True:
    # x[i] += vx[i]
    # y[i] += vy[i]
 
-   for i in range(n):
+  # for i in range(n):
 
 
 
