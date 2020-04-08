@@ -50,30 +50,30 @@ while True:
         x[i] += vx[i]
         y[i] += vy[i]
 
-    # Redraw
-    for i in range(n):
-        pygame.draw.circle(windowSurface, BLUE, \
-                           (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
-
-    for i in range(0,3):
-        status[i] = 1
-        pygame.draw.circle(windowSurface, RED, \
-                           (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
-
     for i in range(n):
         for j in range(i+1,n):
             dist = math.sqrt(math.pow(x[i] - x[j],2) + math.pow(y[i] - y[j], 2))
-            if dist < 2 * radius:
+            if dist < 2 * radius/xmax:
                 if status[i] == 1:
                     status[j] = 1
-                    pygame.draw.circle(windowSurface, RED, \
-                               (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+                    #pygame.draw.circle(windowSurface, RED, \
+                    #           (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
                 if status[j] == 1:
                     status[i] = 1
-                    pygame.draw.circle(windowSurface, RED, \
+                    #pygame.draw.circle(windowSurface, RED, \
+                    #           (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+            
+
+    # Redraw
+    for i in range(n):
+        if status[i] == 0:
+            pygame.draw.circle(windowSurface, BLUE, \
                                (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
-            
-            
+        elif status[i] == 1:
+            pygame.draw.circle(windowSurface, RED, \
+                               (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+
+
     # Event handling
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -82,4 +82,3 @@ while True:
 
     pygame.display.update()
     fpsClock.tick(FRAMES_PER_SECOND)
-
