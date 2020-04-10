@@ -1,4 +1,3 @@
-#main-forrit sem inniheldur collision, reyna að koma árekstrarhlutanum yfir í sérklasa - ATH! kóði virkar ekki í núverandi mynd
 import sys
 import numpy as np
 import pygame
@@ -35,6 +34,9 @@ status = np.zeros(n)
 vx = speed * np.random.rand(n)
 vy = speed * np.random.rand(n)
 
+for i in range(0,1):
+    status[i] = 1
+
 # run the main loop
 while True:
     # Clear screen
@@ -50,30 +52,35 @@ while True:
         x[i] += vx[i]
         y[i] += vy[i]
 
+    # Redraw
     for i in range(n):
+        if status[i] == 0:
+            pygame.draw.circle(windowSurface, BLUE, \
+                           (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+
+        if status[i] == 1:
+            pygame.draw.circle(windowSurface, RED, \
+                           (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+
+    for i in range(n-1):
         for j in range(i+1,n):
             dist = math.sqrt(math.pow(x[i] - x[j],2) + math.pow(y[i] - y[j], 2))
-            if dist < 2 * radius/xmax:
+            if dist < 2 * (radius/xmax):
                 if status[i] == 1:
-                    status[j] = 1
-                    #pygame.draw.circle(windowSurface, RED, \
-                    #           (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+                   status[j] = 1
                 if status[j] == 1:
                     status[i] = 1
-                    #pygame.draw.circle(windowSurface, RED, \
-                    #           (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
-            
 
     # Redraw
     for i in range(n):
         if status[i] == 0:
             pygame.draw.circle(windowSurface, BLUE, \
-                               (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
-        elif status[i] == 1:
+                           (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+
+        if status[i] == 1:
             pygame.draw.circle(windowSurface, RED, \
-                               (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
-
-
+                           (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+            
     # Event handling
     for event in pygame.event.get():
         if event.type == QUIT:
