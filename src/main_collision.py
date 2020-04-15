@@ -2,6 +2,7 @@ import sys
 import numpy as np
 import pygame
 import math
+import random
 from pygame.locals import *
 
 class Simulation:
@@ -68,9 +69,13 @@ class Simulation:
                 dist = math.sqrt(math.pow(x[i] - x[j],2) + math.pow(y[i] - y[j], 2))
                 if dist < 2 * (radius/xmax):
                     if status[i] == 1:
-                       status[j] = 1
+                        prob = random.random()
+                        if prob > 0.3:
+                            status[j] = 1
                     if status[j] == 1:
-                        status[i] = 1
+                        prob = random.random()
+                        if prob > 0.3:
+                            status[i] = 1
 
         # Redraw
         for i in range(n):
