@@ -3,6 +3,7 @@ import numpy as np
 import pygame
 import math
 import random
+import time
 from pygame.locals import *
 
 class Simulation:
@@ -10,6 +11,7 @@ class Simulation:
     WHITE = (255, 255, 255)
     BLUE = (0, 0, 255)
     RED = (255, 0, 0)
+    GREEN = (100, 255, 0)
 
     # set up pygame
     pygame.init()
@@ -26,11 +28,13 @@ class Simulation:
     n = 50 # Number of points
     speed = 0.01
     radius = 5
+    t = 10000
 
     # Initial coordinates are uniformly random in (0, 1)
     x = np.random.rand(n)
     y = np.random.rand(n)
     status = np.zeros(n)
+    cnt = np.zeros(n)
 
     # Point velocity is uniformly random in (0, speed)
     vx = speed * np.random.rand(n)
@@ -38,6 +42,7 @@ class Simulation:
 
     for i in range(0,1):
         status[i] = 1
+        cnt[i] = time.time()
 
     # run the main loop
     while True:
@@ -64,15 +69,24 @@ class Simulation:
                 pygame.draw.circle(windowSurface, RED, \
                                (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
 
+            if time.time() - cnt[i] > 10 and cnt[i] != 0:
+                status[i] = 2
+                pygame.draw.circle(windowSurface, GREEN, \
+                               (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+
+                
+
+            
         for i in range(n-1):
             for j in range(i+1,n):
                 dist = math.sqrt(math.pow(x[i] - x[j],2) + math.pow(y[i] - y[j], 2))
                 if dist < 2 * (radius/xmax):
-                    if status[i] == 1:
+                    if status[i] == 1 and status[j] == 0:
                         prob = random.random()
                         if prob > 0.3:
                             status[j] = 1
-                    if status[j] == 1:
+                            
+                    if status[j] == 1 and status[i] == 0:
                         prob = random.random()
                         if prob > 0.3:
                             status[i] = 1
@@ -86,6 +100,10 @@ class Simulation:
             if status[i] == 1:
                 pygame.draw.circle(windowSurface, RED, \
                                (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
+
+            if status[i] == 2:
+                pygame.draw.circle(windowSurface, GREEN, \
+                               (int(xmax * x[i]), int(ymax * y[i])), radius, 0) 
                 
         # Event handling
         for event in pygame.event.get():
@@ -95,6 +113,3 @@ class Simulation:
 
         pygame.display.update()
         fpsClock.tick(FRAMES_PER_SECOND)
-
-
-
