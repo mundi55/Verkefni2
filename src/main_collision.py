@@ -29,6 +29,7 @@ class Simulation:
     speed = 0.01
     radius = 5
     recovery = 5
+    inf_prob = 0.3
 
     # Initial coordinates are uniformly random in (0, 1)
     x = np.random.rand(n)
@@ -82,14 +83,14 @@ class Simulation:
                 dist = math.sqrt(math.pow(x[i] - x[j],2) + math.pow(y[i] - y[j], 2))
                 if dist < 2 * (radius/xmax):
                     if status[i] == 1 and status[j] == 0:
-                        prob = random.random()
-                        if prob > 0.3:
+                        inf = random.random()
+                        if inf > inf_prob:
                             status[j] = 1
                             cnt[j] = time.time()
                             
                     if status[j] == 1 and status[i] == 0:
-                        prob = random.random()
-                        if prob > 0.3:
+                        inf = random.random()
+                        if inf > inf_prob:
                             status[i] = 1
                             cnt[i] = time.time()
 
