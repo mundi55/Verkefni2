@@ -85,11 +85,13 @@ class Simulation:
                         prob = random.random()
                         if prob > 0.3:
                             status[j] = 1
+                            cnt[j] = time.time()
                             
                     if status[j] == 1 and status[i] == 0:
                         prob = random.random()
                         if prob > 0.3:
                             status[i] = 1
+                            cnt[i] = time.time()
 
         # Redraw
         for i in range(n):
@@ -113,3 +115,4 @@ class Simulation:
 
         pygame.display.update()
         fpsClock.tick(FRAMES_PER_SECOND)
+
