@@ -28,7 +28,7 @@ class Simulation:
     n = 50 # Number of points
     speed = 0.01
     radius = 5
-    t = 10000
+    recovery = 5
 
     # Initial coordinates are uniformly random in (0, 1)
     x = np.random.rand(n)
@@ -69,7 +69,7 @@ class Simulation:
                 pygame.draw.circle(windowSurface, RED, \
                                (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
 
-            if time.time() - cnt[i] > 10 and cnt[i] != 0:
+            if time.time() - cnt[i] > recpvery and cnt[i] != 0:
                 status[i] = 2
                 pygame.draw.circle(windowSurface, GREEN, \
                                (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
@@ -115,4 +115,3 @@ class Simulation:
 
         pygame.display.update()
         fpsClock.tick(FRAMES_PER_SECOND)
-
