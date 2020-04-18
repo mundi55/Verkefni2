@@ -8,6 +8,7 @@ from pygame.locals import *
 
 class Simulation:
     # set up the colors (RGB - red-green-blue values)
+    BLACK = (0, 0, 0)
     WHITE = (255, 255, 255)
     BLUE = (0, 0, 255)
     RED = (255, 0, 0)
@@ -37,10 +38,18 @@ class Simulation:
     status = np.zeros(n)
     cnt = np.zeros(n)
 
+    # Move coordinates from border to area
+    for i in range(n):
+        if x[i] > 0.49 and x[i] < 0.51:
+            x[i] += 0.02
+        if y[i] > 0.49 and y[i] < 0.51:
+            y[i] += 0.02
+
     # Point velocity is uniformly random in (0, speed)
     vx = speed * np.random.rand(n)
     vy = speed * np.random.rand(n)
 
+    # Make one point infected and start recovery counter
     for i in range(0,1):
         status[i] = 1
         cnt[i] = time.time()
@@ -49,6 +58,9 @@ class Simulation:
     while True:
         # Clear screen
         windowSurface.fill(WHITE)
+        # Draw borders
+        pygame.draw.line(windowSurface, BLACK, [0,ymax/2], [xmax,ymax/2], 3)
+        pygame.draw.line(windowSurface, BLACK, [xmax/2,0], [xmax/2,ymax], 3)
 
         # Update positions
         for i in range(n):
@@ -56,6 +68,11 @@ class Simulation:
             if x[i] < 0 or x[i] > 1:
                 vx[i] = -1 * vx[i]
             if y[i] < 0 or y[i] > 1:
+                vy[i] = -1 * vy[i]
+            # Reverse direction if point hits border
+            if x[i] > 0.49 and x[i] < 0.51:
+                vx[i] = -1 * vx[i]
+            if y[i] > 0.49 and y[i] < 0.51:
                 vy[i] = -1 * vy[i]
             x[i] += vx[i]
             y[i] += vy[i]
@@ -70,12 +87,10 @@ class Simulation:
                 pygame.draw.circle(windowSurface, RED, \
                                (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
 
-            if time.time() - cnt[i] > recpvery and cnt[i] != 0:
+            if time.time() - cnt[i] > recovery and cnt[i] != 0:
                 status[i] = 2
                 pygame.draw.circle(windowSurface, GREEN, \
                                (int(xmax * x[i]), int(ymax * y[i])), radius, 0)
-
-                
 
             
         for i in range(n-1):
