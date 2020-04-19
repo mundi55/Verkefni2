@@ -74,12 +74,20 @@ class Simulation:
             if y[i] < 0 or y[i] > 1:
                 vy[i] = -1 * vy[i]
             # Reverse direction if point hits border
-            if x[i] > 0.49 and x[i] < 0.51:
+            if x[i] > 0.495 and x[i] < 0.505:
                 if y[i] < 250/ymax or y[i] > 280/ymax:
                     vx[i] = -1 * vx[i]
-            if y[i] > 0.49 and y[i] < 0.51:
+                if y[i] > 250/ymax and y[i] < 251/ymax:
+                    vy[i] = -1 * vy[i]
+                if y[i] > 279/ymax and y[i] < 280/ymax:
+                    vy[i] = -1 * vy[i]
+            if y[i] > 0.495 and y[i] < 0.505:
                 if x[i] < 420/xmax or x[i] > 460/xmax:
                     vy[i] = -1 * vy[i]
+                if x[i] > 420/xmax and x[i] < 421/xmax:
+                    vx[i] = -1 * vx[i]
+                if x[i] > 459/xmax and x[i] < 460/xmax:
+                    vx[i] = -1 * vx[i]
             x[i] += vx[i]
             y[i] += vy[i]
 
@@ -149,3 +157,4 @@ class Simulation:
 
         pygame.display.update()
         fpsClock.tick(FRAMES_PER_SECOND)
+
