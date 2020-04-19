@@ -30,9 +30,9 @@ class Simulation:
     n = 50 # Number of points
     speed = 0.01
     radius = 5
-    infectious = 2
-    recovery = 7
-    inf_prob = 0.3
+    infectious = 2 # Time it takes to become infectious (sec)
+    recovery = 7 # Time it takes to recover (sec)
+    inf_prob = 0.7 # Probability of infection when points meet
 
     # Initial coordinates are uniformly random in (0, 1)
     x = np.random.rand(n)
@@ -108,13 +108,13 @@ class Simulation:
                 if dist < 2 * (radius/xmax):
                     if status[i] == 2 and status[j] == 0:
                         inf = random.random()
-                        if inf > inf_prob:
+                        if inf < inf_prob:
                             status[j] = 1
                             cnt[j] = time.time()
                             
                     if status[j] == 1 and status[i] == 0:
                         inf = random.random()
-                        if inf > inf_prob:
+                        if inf < inf_prob:
                             status[i] = 1
                             cnt[i] = time.time()
 
