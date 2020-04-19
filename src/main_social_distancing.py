@@ -105,6 +105,8 @@ class Simulation:
                             status[i] = 1
                             cnt[i] = time.time()
 
+
+        # Implement social distancing
         if time.time() - start_time > 5:
             for i in range(n-1):
                 for j in range(i+1,n):
