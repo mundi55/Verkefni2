@@ -1,8 +1,0 @@
-import random
-
-def likur(n):
-	x = 0
-	for i in range(n):
-		y = random.choice([1, 0])
-		
-		
