@@ -1,7 +1,5 @@
 import sys
-import numpy as np
 import pygame
-import math
 import random
 import time
 
@@ -22,8 +20,6 @@ class Dot:
             self.y += 0.02
         self.vx = speed * random.random()
         self.vy = speed * random.random()
-        self.x += self.vx
-        self.y += self.vy
         self.color = color
             
     def infect(self, color=LIGHT_RED):
@@ -31,7 +27,15 @@ class Dot:
         self.cnt = time.time()
         self.color = color
 
-    def reverse(self):
+    def edges(self):
+        if self.x < 0 or self.x > 1:
+            self.vx = -1 * self.vx
+        if self.y < 0 or self.y > 1:
+            self.vy = -1 * self.vy
+        self.x += self.vx
+        self.y += self.vy
+
+    def reverse(self, xmax, ymax):
         if self.x < 0 or self.x > 1:
             self.vx = -1 * self.vx
         if self.y < 0 or self.y > 1:
@@ -40,6 +44,28 @@ class Dot:
             self.vx = -1 * self.vx
         if self.y > 0.49 and self.y < 0.51:
             self.vy = -1 * self.vy
+        self.x += self.vx
+        self.y += self.vy
+
+    def break_quarantine(self, xmax, ymax):
+        if self.x < 0 or self.x > 1:
+            self.vx = -1 * self.vx
+        if self.y < 0 or self.y > 1:
+            self.vy = -1 * self.vy
+        if self.x > 0.49 and self.x < 0.51:
+            if self.y < 250/ymax or self.y > 280/ymax:
+                self.vx = -1 * self.vx
+            if self.y > 249/ymax and self.y < 251/ymax:
+                self.vy = -1 * self.vy
+            if self.y > 279/ymax and self.y < 281/ymax:
+                self.vy = -1 * self.vy
+        if self.y > 0.49 and self.y < 0.51:
+            if self.x < 420/xmax or self.x > 460/xmax:
+                self.vy = -1 * self.vy
+            if self.x > 419/xmax and self.x < 421/xmax:
+                self.vx = -1 * self.vx
+            if self.x > 459/xmax and self.x < 461/xmax:
+                self.vx = -1 * self.vx
         self.x += self.vx
         self.y += self.vy
 
@@ -55,3 +81,10 @@ class Dot:
         self.status = 3
         self.color = color
 
+    def social_dist1(self):
+        self.vx = -1 * self.vx
+        self.x += self.vx
+
+    def social_dist2(self):
+        self.vy = -1 * self.vy
+        self.y += self.vy
