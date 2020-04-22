@@ -92,6 +92,9 @@ class Dot:
     def recovered(self, color=GREEN):
         self.status = 3
         self.color = color
+        # Resumes normal movements
+        self.vx = self.vx * 2
+        self.vy = self.vy * 2
 
     # Implements social distancing
     def social_dist1(self):
