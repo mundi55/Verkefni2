@@ -40,7 +40,7 @@ class Dot:
         self.y += self.vy
 
     # Adds quarantine borders
-    def reverse(self, xmax, ymax):
+    def reverse(self):
         if self.x < 0 or self.x > 1:
             self.vx = -1 * self.vx
         if self.y < 0 or self.y > 1:
