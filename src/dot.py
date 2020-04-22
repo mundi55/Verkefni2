@@ -29,9 +29,6 @@ class Dot:
         self.status = 1
         self.cnt = time.time()
         self.color = color
-        # Reduces speed as movement is impaired due to illness
-        self.vx = self.vx / 2
-        self.vy = self.vy / 2
 
     # Reverse dots when they hit edges
     def edges(self):
@@ -92,9 +89,6 @@ class Dot:
     def recovered(self, color=GREEN):
         self.status = 3
         self.color = color
-        # Resumes normal movements
-        self.vx = self.vx * 2
-        self.vy = self.vy * 2
 
     # Implements social distancing
     def social_dist1(self):
