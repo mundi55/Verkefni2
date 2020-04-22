@@ -29,6 +29,9 @@ class Dot:
         self.status = 1
         self.cnt = time.time()
         self.color = color
+        # Reduces speed as movement is impaired due to illness
+        self.vx = self.vx / 2
+        self.vy = self.vy / 2
 
     # Reverse dots when they hit edges
     def edges(self):
